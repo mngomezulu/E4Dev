@@ -1,8 +1,10 @@
 ﻿@using E4UsersMVCWebApp.Models
 @model IEnumerable<UserModel>
+
 <h2>@ViewBag.Title</h2>
 
-@Html.ActionLink("Add Item", "Create", new { Id = 0})
+@Html.ActionLink("Add User", "Create",null)
+<a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Create">Create Users</a>
 
 <table class="table table-bordered">  
         <thead>
@@ -23,7 +25,10 @@
         {  
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ImagePath)
+                    @{
+                        var imagePath = ViewBag.ImgDir + item.ImagePath;
+                    }
+                    <img src="@imagePath" alt="Image" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
@@ -43,8 +48,8 @@
             <td>
                 $@Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>@Html.ActionLink("Edit", "Edit", new { Id = @item.Id })</td>
-            <td>@Html.ActionLink("Delete", "Delete", new { Id = @item.Id }, new { onclick="return confirm(Are you want to delete record?');" } )</td>
+            <td> @Html.ActionLink("Edit", "Edit", new { Id = @item.Id })</td>
+             <td>@Html.ActionLink("Delete", "Delete", new { Id = @item.Id })</td>
             </tr>
          }
          </tbody>
