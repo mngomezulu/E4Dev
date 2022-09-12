@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,12 +12,13 @@ builder.Services.AddControllersWithViews()
                 .AddXmlSerializerFormatters();
 
 
-//11-Sept-22: Code block Added by Mlando
-builder.Services.AddControllers(options =>
-{
-    //To configure an app to respect browser accept headers
-    options.RespectBrowserAcceptHeader = true;
-});
+builder.Services.AddRazorPages()
+    .AddMvcOptions(options =>
+    {
+        options.MaxModelValidationErrors = 50;
+        options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+            _ => "The field is required.");
+    });
 
 var app = builder.Build();
 
@@ -28,6 +34,7 @@ app.UseStatusCodePages(Text.Plain, "Status Code Page: {0}");
 app.UseRouting();
 
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

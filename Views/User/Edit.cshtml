@@ -1,0 +1,66 @@
+﻿@model E4UsersMVCWebApp.Models.UserModel;
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Post", "User", FormMethod.Post, new { }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            ID
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Id, new { @readonly = "readonly"} )
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DoB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DoB)
+            @Html.ValidationMessageFor(model => model.DoB)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cellphone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cellphone)
+            @Html.ValidationMessageFor(model => model.Cellphone)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImagePath)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImagePath)
+            @Html.ValidationMessageFor(model => model.ImagePath)
+        </div>
+        <p>
+            <input type="submit" value="Update" id="btnsave" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Close", "Index")
+</div>
