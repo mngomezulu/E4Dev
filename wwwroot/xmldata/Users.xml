@@ -1,12 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>  
-<Users>  
-<User>  
-<Id>1</Id>  
-<FirstName>Mlando</FirstName>  
-<LastName>Mngomezulu</LastName>  
-<DoB>09/09/2001</DoB>  
-<Cellphone>+27823342109</Cellphone>  
-<Email>mngomem@hotmail.com</Email>  
-<ImagePath>imagepic.jpg</ImagePath> 
-</User>  
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Users>
+  <User>
+    <Id>1</Id>
+    <FirstName>Mlando</FirstName>
+    <LastName>Mngomezulu</LastName>
+    <DoB>09/09/2001</DoB>
+    <Cellphone>+27823342109</Cellphone>
+    <Email>mngomem@hotmail.com</Email>
+    <ImagePath>imagepic.jpg</ImagePath>
+  </User>
+  <User>
+    <Id>3</Id>
+    <FirstName>Maja</FirstName>
+    <LastName>Rimba</LastName>
+    <DoB>2022/09/12</DoB>
+    <Cellphone>+27782333222</Cellphone>
+    <Email>mngomem@hotmail.com</Email>
+    <ImagePath>source.jpg</ImagePath>
+  </User>
 </Users>

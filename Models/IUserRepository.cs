@@ -6,7 +6,7 @@ namespace E4UsersMVCWebApp.Models
     {
         List<UserModel> GetListOfUsers();
         List<UserModel> GetDataSetListOfUsers();
-        UserModel GetUserByID(int id);
+        UserModel? GetUserByID(int id);
         bool IsExistsNameLastname(string username, string lastname);
         void InsertUserModel(UserModel Student);
         void DeleteUserModel(int id);

@@ -3,9 +3,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@Html.ActionLink("Add User", "Create",null)
-<a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Create">Create Users</a>
-
+@Html.ActionLink("Add User", "Create", null, new { @class="button .button1" })
 <table class="table table-bordered">  
         <thead>
         <tr> 
@@ -28,13 +26,13 @@
                     @{
                         var imagePath = ViewBag.ImgDir + item.ImagePath;
                     }
-                    <img src="@imagePath" alt="Image" />
+                    <img alt="" src="@imagePath" style="height:100px;width:100px;" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                $@Html.DisplayFor(modelItem => item.FirstName)
+                @Html.ActionLink(item.FirstName, "Details", new { id = @item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
@@ -43,13 +41,13 @@
                 @Html.DisplayFor(modelItem => item.DoB)
             </td>
             <td>
-                $@Html.DisplayFor(modelItem => item.Cellphone)
+                @Html.DisplayFor(modelItem => item.Cellphone)
             </td>
             <td>
-                $@Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td> @Html.ActionLink("Edit", "Edit", new { Id = @item.Id })</td>
-             <td>@Html.ActionLink("Delete", "Delete", new { Id = @item.Id })</td>
+            <td> @Html.ActionLink("Edit", "Edit", new { id = @item.Id })</td>
+             <td>@Html.ActionLink("Delete", "Delete", new { id = @item.Id })</td>
             </tr>
          }
          </tbody>

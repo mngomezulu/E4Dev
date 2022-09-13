@@ -6,44 +6,56 @@
     <div class="row">
         <div class="col-sm-6">
             <hr />
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                     <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+            @using (Html.BeginForm()) 
+            {
+                @Html.HiddenFor(model => model.Id)
+                  <div class="editor-label">
+                    @Html.LabelFor(model => model.FirstName)
                 </div>
-                <div class="form-group">
-                    <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName)
                 </div>
-                <div class="form-group">
-                    <label asp-for="DoB" class="control-label"></label>
-                    <input asp-for="DoB" class="form-control" />
-                    <span asp-validation-for="DoB" class="text-danger"></span>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LastName)
                 </div>
-                <div class="form-group">
-                    <label asp-for="Cellphone" class="control-label"></label>
-                    <input asp-for="Cellphone" class="form-control" />
-                    <span asp-validation-for="Cellphone" class="text-danger"></span>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName)
                 </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DoB)
                 </div>
-                 <div class="form-group">
-                    <label asp-for="ImagePath" class="control-label"></label>
-                    <input asp-for="ImagePath" class="form-control" />
-                    <span asp-validation-for="ImagePath" class="text-danger"></span>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.DoB)
+                    @Html.ValidationMessageFor(model => model.DoB)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Cellphone)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Cellphone)
+                    @Html.ValidationMessageFor(model => model.Cellphone)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ImagePath)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ImagePath)
+                    @Html.ValidationMessageFor(model => model.ImagePath)
                 </div>
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit" value="Save" />
                     <a class="btn btn-danger" asp-action="Index">Back</a>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>

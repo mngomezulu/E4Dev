@@ -20,16 +20,12 @@
 
         public UserRepository(string datafilepath)
         {
-            allUsers = new List<UserModel>();
+            List<UserModel> allUsers = new List<UserModel>();
             this._filename = datafilepath;
             try
             {
                 //Load the XML file in XmlDocument - option 1.
                 UserData = XDocument.Load(_filename);
-
-                //Load the XML file in XmlDocument - option 2.
-                xmlUserdoc = new XmlDocument();
-                xmlUserdoc.Load(_filename);
             }
             catch (Exception)
             {
@@ -42,7 +38,10 @@
         {
             try
             {
-
+                //Load the XML file in XmlDocument - option 2.
+                xmlUserdoc = new XmlDocument();
+                xmlUserdoc.Load(_filename);
+                allUsers = new List<UserModel>();
                 //XmlNodeList elemList = xmlUserdoc.GetElementsByTagName("User");
                 XmlNodeList elemList = xmlUserdoc.SelectNodes("/Users/User");
                 //Loop through the selected Nodes.
@@ -93,14 +92,22 @@
             return users;
         }
 
-        public UserModel GetUserByID(int id)
+        public UserModel? GetUserByID(int id)
         {
+            allUsers = GetListOfUsers();
+            if (allUsers.Count == 0)
+                return null;
+
             return allUsers.Find(item => item.Id == id);
         }
 
         public bool IsExistsNameLastname(string firstname = "", string lastname = "")
         {
-            List<UserModel?> users = allUsers.FindAll(t => t.FirstName == firstname && t.LastName == lastname); ;
+            allUsers = GetListOfUsers();
+            if (allUsers.Count == 0)
+                return false;
+
+                List<UserModel?> users = allUsers.FindAll(t => t.FirstName == firstname && t.LastName == lastname); ;
 
             if (users.Count > 0)
                 return true;
@@ -120,6 +127,9 @@
                 new XElement("Email", user.Email),
                 new XElement("ImagePath", user.ImagePath)));
             UserData.Save(_filename);
+
+            //Refresh list of users
+            allUsers = GetListOfUsers();
         }
 
         public void EditUserModel(UserModel user)
@@ -146,7 +156,7 @@
         {
             try
             {
-                UserData.Root.Elements("item").Where(i => (int)i.Element("Id") == id).Remove();
+                UserData.Root.Elements("User").Where(i => (int)i.Element("Id") == id).Remove();
                 UserData.Save(_filename);
             }
             catch (Exception)

@@ -95,11 +95,11 @@ namespace E4UsersMVCWebApp.Controllers
                     {
                       //Add new User
                         ds.InsertUserModel(user);
-                        ViewBag.Title = "Create New User";
+                        ViewBag.Title = "List of Users";
                     return RedirectToAction(nameof(Index));
                     }
                 }
-                catch (Exception /* ex */)
+                catch (Exception /* ex*/ )
                 {
                     //Log the error (uncomment ex variable name and write a log.
                     ModelState.AddModelError("", "Unable to save changes. " +
@@ -109,7 +109,6 @@ namespace E4UsersMVCWebApp.Controllers
                 return View(user);
             }
 
-            [Route("User/edit/{id?}")]
             [HttpGet]
             public IActionResult Edit(int? id)
             {
@@ -119,7 +118,7 @@ namespace E4UsersMVCWebApp.Controllers
                     return NotFound();
                 }
 
-                UserModel user = ds.GetUserByID(id.Value);
+                UserModel? user = ds.GetUserByID(id.Value);
                 if (user == null)
                 {
                     return NotFound();
@@ -162,7 +161,7 @@ namespace E4UsersMVCWebApp.Controllers
                     return NotFound();
                 }
 
-                UserModel user = ds.GetUserByID(id.Value);
+                UserModel? user = ds.GetUserByID(id.Value);
                 if (user == null)
                 {
                     return NotFound();
@@ -177,7 +176,7 @@ namespace E4UsersMVCWebApp.Controllers
             {
                 try
                 {
-                UserModel user = ds.GetUserByID(id);
+                UserModel? user = ds.GetUserByID(id);
                 if (user == null)
                 {
                     return NotFound();
